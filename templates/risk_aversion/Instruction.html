@@ -1,0 +1,42 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Introduction
+{% endblock %}
+
+{% block content %}
+
+
+    <p>
+        Dans cette expérience, vous pouvez choisir entre deux loteries: la Loterie A et la loterie B
+    </p>
+    <p>
+        La loterie A vous paiera {{Constants.risk_averse_payoff_1}} avec tant de probabilité et {{Constants.risk_averse_payoff_2}} avec tant de probabilité. </br>
+        La loterie B vous paiera {{Constants.risk_takers_payoff_1}} avec tant de probabilité et {{Constants.risk_takers_payoff_2}} avec tant de probabilité.
+    </p>
+    <p>
+        Il y a 10 paires différentes de loteries A et B. Chaque loterie a des probabilités différentes en fonction du montant
+        payé par la loterie. Ces probabilités sont représentées par des petits chiffres, entre parenthèses, en face de chaque
+        montant. Ils indiquent le montant de la récompense, C’est le cas quand un des petits chiffres devant le montant
+        correspond avec l’intervalle indiqué dans le tableau.
+    </p>
+    <p>
+        Pour chaque loterie, merci d’indiquer si vous préférez la loterie A ou B.
+    <p/>
+    <p>
+        L’ordinateur va ensuite tirer aléatoirement deux chiffres. Les deux numéros sont compris entre le 1 et le 10 et chaque nombre
+        a la même probabilité.
+    </p>
+    <p>
+        Le premier numéro détermine laquelle des 10 paires de loteries sera applicable. Votre choix de loterie dans cette paire, A ou B,
+        sera récompensé par le montant approprié. </br>
+        Le deuxième numéro détermine quel montant vous recevrez pour la récompense de la loterie appropriée. Vous recevrez la somme pour
+        laquelle le deuxième numéro correspond à un des petits chiffres indiqués en dessous de chaque somme.
+    </p>
+
+
+
+                                                                                             {% next_button %}
+
+{% endblock %}

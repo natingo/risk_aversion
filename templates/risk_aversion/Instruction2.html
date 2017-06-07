@@ -1,0 +1,105 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Instruction (suite)
+{% endblock %}
+
+{% block content %}
+
+
+    <p>
+        Comment ça marche: vous choisissez une loterie (A ou B) pour chaque paire de loteries. L'ordinateur va tirer un nombre
+        entre 1 et 10 pour déterminer quelle paure sera applicable. Un second numéro compris entre 1 et 10 sera tiré pour déterminer
+        laquelle de la première ou de la seconde somme sera versée. Votre récompense est la somme correspondante à la loterie choisie,
+        dont les petits chiffres correspondent au chiffre du second tirage.
+    </p>
+    <p>
+        Exemple: si le premier nombre tiré est "5", cela signifie que c'est la paire 5 qui est concernée. Si le second chiffre est "1",
+        "2", "3", "4", ou "5" alors la première somme de la loterie que vous avez choisie sera versée, c'est à dire {{Constants.risk_averse_payoff_1}}
+        si vous avez choisi la loterie A et {{Constants.risk_averse_payoff_2}} si vous avez choisi la loterie B. Si le second chiffre est
+        "6", "7", "8", "9", ou "10", alors ce sera la deuxième loterie que vous avez choisie qui vous sera versée, c'est
+        à dire {{Constant.risk_takers_payoff_1}} dans le cas où vous avez choisi la loterie A ou {{Constant.risk_takers_payoff_2}}
+        si c'est la loterie B.
+    </p>
+    <p>
+        Les deux chiffres sont tirés aléatoirement.
+    </p>
+
+    <div class="form-group required">
+
+        <table class='table table-bordered text-center' style='width: auto; margin: auto'>
+
+            <tr>
+                <th class="text-center">Pairs de lotterie</th>
+                <th class="text-center">Lotterie A</th>
+                <th class="text-center">Lotterie A</th>
+                <th class="text-center">Mon choix est Lotterie A</th>
+                <th class="text-center">Lotterie B</th>
+                <th class="text-center">Lotterie B</th>
+                <th class="text-center">Mon choix est Lotterie B</th>
+            </tr>
+            <tr>
+                <td>
+                  1
+                </td>
+                <td><strong>{{ Constants.risk_averse_payoff_1 }}</strong> <br/>(1)</td>
+                <td><strong>{{ Constants.risk_averse_payoff_2 }}</strong> <br/>(2,3,4,5,6,7,8,9,10)</td>
+                <td>Vous allez cliquer soit ici...</td>
+                <td><strong>{{ Constants.risk_takers_payoff_1 }}</strong> <br/>(1)</td>
+                <td><strong>{{ Constants.risk_takers_payoff_2 }}</strong> <br/>(2,3,4,5,6,7,8,9,10)</td>
+                <td> Soit ici...</td>
+            </tr>
+             <tr>
+                <td>
+                  ...
+                </td>
+                <td><strong>{{ Constants.risk_averse_payoff_1 }}</strong> <br/>(1,...)</td>
+                <td><strong>{{ Constants.risk_averse_payoff_2 }}</strong> <br/>(...,5,6,7,8,9,10)</td>
+                <td>...</td>
+                <td><strong>{{ Constants.risk_takers_payoff_1 }}</strong> <br/>(1,...)</td>
+                <td><strong>{{ Constants.risk_takers_payoff_2 }}</strong> <br/>(...,5,6,7,8,9,10)</td>
+                <td> ...</td>
+            </tr>
+             <tr>
+                <td>
+                  5
+                </td>
+                <td><strong>{{ Constants.risk_averse_payoff_1 }}</strong> <br/>(1,2,3,4,5)</td>
+                <td><strong>{{ Constants.risk_averse_payoff_2 }}</strong> <br/>(6,7,8,9,10)</td>
+                <td> soit ici...</td>
+                <td><strong>{{ Constants.risk_takers_payoff_1 }}</strong> <br/>(1,2,3,4,5)</td>
+                <td><strong>{{ Constants.risk_takers_payoff_2 }}</strong> <br/>(6,7,8,9,10)</td>
+                <td> ... soit ici</td>
+            </tr>
+            <tr>
+                <td>
+                  ...
+                </td>
+                <td><strong>{{ Constants.risk_averse_payoff_1 }}</strong> <br/>(1,2,3,4,5,...)</td>
+                <td><strong>{{ Constants.risk_averse_payoff_2 }}</strong> <br/>(...,10)</td>
+                <td> soit ici...</td>
+                <td><strong>{{ Constants.risk_takers_payoff_1 }}</strong> <br/>(1,2,3,4,5,...)</td>
+                <td><strong>{{ Constants.risk_takers_payoff_2 }}</strong> <br/>(...,10)</td>
+                <td> ...</td>
+            </tr>
+            <tr>
+                <td>
+                  10
+                </td>
+                <td><strong>{{ Constants.risk_averse_payoff_1 }}</strong> <br/>(1,2,3,4,5,6,7,8,9,10)</td>
+                <td><strong>{{ Constants.risk_averse_payoff_2 }}</strong> <br/>(-)</td>
+                <td> soit ici...</td>
+                <td><strong>{{ Constants.risk_takers_payoff_1 }}</strong> <br/>(1,2,3,4,5,6,7,8,9,10)</td>
+                <td><strong>{{ Constants.risk_takers_payoff_2 }}</strong> <br/>(-)</td>
+                <td> ...</td>
+            </tr>
+
+         </table>
+
+    </div>
+
+
+                                                                                             {% next_button %}
+
+{% endblock %}
