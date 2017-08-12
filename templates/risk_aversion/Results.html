@@ -2,14 +2,25 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    Page title
+    Resultats
 {% endblock %}
 
 {% block content %}
+Le numéro tiré aléatoirement est : {{player.gamble_num}}
+<br>
+Votre choix était {{chosen_gamble_choice|yesno:"A, B"}} pour cette lotterie
+<br>
+Nous avons tiré un deuxième chiffre aléatroirement entre {{Constants.lb}} et {{Constants.ub}}
+<br>
+Si le nombre tiré est inférieur ou égale à  {{player.gamble_num}} vous recevrez
+{{player.get_lot_choices.0}}.
+<br>
+Si le nombre tiré est supérieur ou égale à {{player.gamble_num}} , vous recevrez
+{{player.get_lot_choices.1}}.
 
-
-
+<br>
+Le nombre tiré est {{player.num_drawn}}.
+<br>
+Vous recevrez dès lors  {{player.payoff}}.
     {% next_button %}
 {% endblock %}
-
-

@@ -1,31 +1,28 @@
 from otree.api import Currency as c, currency_range
 from . import models
 from ._builtin import Page, WaitPage
+from .models import Constants
+
+from otree.api import Currency as c, currency_range
+from . import models
+from ._builtin import Page, WaitPage
 from django.forms import Field
 from django.utils.translation import ugettext_lazy
 from .models import Constants
 from django import forms
+from django.forms import Field
+from django.utils.translation import ugettext_lazy
 
-my_default_errors = {
-    'required': 'yo',
-    'invalid': 'yoo'}
-
-
-
-
-
-class Myforms(forms.Form):
-    some_field = forms.BooleanField(error_messages=my_default_errors)
 
 class Introduction(Page):
-    pass
+    def is_displayed(self):
+        return self.subsession.round_number == 1
 
 class Instruction(Page):
     pass
 
 class Instruction2(Page):
     pass
-
 
 class Decisions(Page):
     form_model = models.Player
@@ -44,11 +41,9 @@ class Decisions(Page):
             rightcol.append(str2)
 
         return {'abclist':zip(smth,leftcol,rightcol),}
-# class DecisionsA(Page):
-#     pass
-# class DecisionsB(Page):
-#     pass
 
+    def before_next_page(self):
+        self.player.set_payoffs()
 
 
 class ResultsWaitPage(WaitPage):
@@ -58,7 +53,20 @@ class ResultsWaitPage(WaitPage):
 
 
 class Results(Page):
-    pass
+    def vars_for_template(self):
+        choice = getattr(self.player,
+                         "gamble_{}".format(self.player.gamble_num))
+
+        return {'chosen_gamble_choice': choice, }
+        pass
+
+class Results2(Page):
+    def vars_for_template(self):
+        choice = getattr(self.player,
+                         "gamble_{}".format(self.player.gamble_num))
+
+        return {'chosen_gamble_choice': choice, }
+        pass
 
 
 page_sequence = [
@@ -66,6 +74,7 @@ page_sequence = [
     Instruction,
     Instruction2,
     Decisions,
+    Results2
     # DecisionsA,
     # DecisionsB
 ]

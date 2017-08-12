@@ -16,9 +16,8 @@
 
 {% endblock %}
 
-{% block content %}
 
-            {% include Constants.instruction1%}
+{% block content %}
 
     <div class="form-group required">
 
@@ -35,11 +34,11 @@
             </tr>
              </tr>
           {% for abc in abclist %}
-
             <tr>
             <tr>
                 <td>
                   {{ forloop.counter}}
+                    {{ abc.0.errors }}
                 </td>
                 <td><strong>{{ Constants.risk_averse_payoff_1 }}</strong> <br/>({{abc.1}})</td>
                 <td><strong>{{ Constants.risk_averse_payoff_2 }}</strong> <br/>({{abc.2}})</td>
