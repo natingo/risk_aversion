@@ -1,0 +1,53 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Resultats
+{% endblock %}
+
+{% block content %}
+
+
+    <p>
+        The first number you randomly drew is {{player.gamble_num}}. Hence this is your lottery choice:
+    </p>
+
+    <div class="form-group required">
+
+        <table class='table table-bordered text-center' style='width: auto; margin: auto'>
+
+            <tr>
+                <th class="text-center">Pairs de lotterie</th>
+                <th class="text-center">Lotterie A</th>
+                <th class="text-center">Lotterie A</th>
+                <th class="text-center">Mon choix est Lotterie A</th>
+                <th class="text-center">Lotterie B</th>
+                <th class="text-center">Lotterie B</th>
+                <th class="text-center">Mon choix est Lotterie B</th>
+            </tr>
+            <tr>
+                <td>
+                  {{player.gamble_num}}
+                </td>
+                <td><strong>{{ Constants.risk_averse_payoff_1 }}</strong> <br/>({{abc.1}})</td>
+                <td><strong>{{ Constants.risk_averse_payoff_2 }}</strong> <br/>({{abc.2}})</td>
+                <td><input type="radio" name="{{ abc.0.html_name}}" value="True" required {% if abc.0.value == 'True' %}checked{% endif %}></td>
+                <td><strong>{{ Constants.risk_takers_payoff_1 }}</strong> <br/>({{abc.1}})</td>
+                <td><strong>{{ Constants.risk_takers_payoff_2 }}</strong> <br/>({{abc.2}})</td>
+                <td><input type="radio" name="{{ abc.0.html_name}}" value="False" required {% if abc.0.value == 'False' %}checked{% endif %}></td>
+            </tr>
+            <tr>
+
+         </table>
+
+    </div>
+    <p>
+        The second number is {{player.num_drawn}}. Hence you shall receive you first payoff.
+        <br>
+        So payoff on this experiment is {{player.payoff}}
+    </p>
+
+       {% next_button %}
+
+
+ {% endblock %}
