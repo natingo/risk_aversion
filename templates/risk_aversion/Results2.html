@@ -9,7 +9,7 @@
 
 
     <p>
-        The first number you randomly drew is {{player.gamble_num}}. Hence this is your lottery choice:
+        Le premier numéro tiré aléatoirement est {{player.gamble_num}}. Par conséquent vous avez choisi la lotterie suivante:
     </p>
 
     <div class="form-group required">
@@ -29,12 +29,16 @@
                 <td>
                   {{player.gamble_num}}
                 </td>
-                <td><strong>{{ Constants.risk_averse_payoff_1 }}</strong> <br/>({{abc.1}})</td>
-                <td><strong>{{ Constants.risk_averse_payoff_2 }}</strong> <br/>({{abc.2}})</td>
-                <td><input type="radio" name="{{ abc.0.html_name}}" value="True" required {% if abc.0.value == 'True' %}checked{% endif %}></td>
-                <td><strong>{{ Constants.risk_takers_payoff_1 }}</strong> <br/>({{abc.1}})</td>
-                <td><strong>{{ Constants.risk_takers_payoff_2 }}</strong> <br/>({{abc.2}})</td>
-                <td><input type="radio" name="{{ abc.0.html_name}}" value="False" required {% if abc.0.value == 'False' %}checked{% endif %}></td>
+                <td><strong>{{ Constants.risk_averse_payoff_1 }}</strong> <br/>({{str1}})</td>
+                <td><strong>{{ Constants.risk_averse_payoff_2 }}</strong> <br/>({{str2}})</td>
+                <td>
+                  <input type="radio" name="" value="True" disabled {% if chosen_gamble_choice  %}checked{% endif %}>
+                </td>
+                <td><strong>{{ Constants.risk_takers_payoff_1 }}</strong> <br/>({{str1}})</td>
+                <td><strong>{{ Constants.risk_takers_payoff_2 }}</strong> <br/>({{str2}})</td>
+                <td>
+                  <input type="radio" name="" value="False" disabled {% if not chosen_gamble_choice %}checked{% endif %}>
+                </td>
             </tr>
             <tr>
 
@@ -42,9 +46,9 @@
 
     </div>
     <p>
-        The second number is {{player.num_drawn}}. Hence you shall receive you first payoff.
+        Le second  numéro est le {{player.num_drawn}}. Dès lors vous recevrez le paiement associé
         <br>
-        So payoff on this experiment is {{player.payoff}}
+        Ainsi votre paiement à cette expérience est {{player.payoff}}
     </p>
 
        {% next_button %}
